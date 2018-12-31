@@ -1,5 +1,5 @@
 from copy import deepcopy
-from Gomoku30.threat_space_search_util import *
+from threat_space_search_util import *
 
 
 def get_threats(board, col):
@@ -17,7 +17,6 @@ def get_threats(board, col):
                     check_four(threats, board, i, j, dy, dx, col, opp)
                     continue
                 elif i+6*dy not in range(len(board)) or j+6*dx not in range(len(board)):
-
                     continue
                 num_of_col = 0
                 valid = True
@@ -31,4 +30,4 @@ def get_threats(board, col):
                 if num_of_col > 0 and valid:
                     end_pos = (i + 4 * dy, j + 4 * dx)
                     open[num_of_col][col].append(((i, j), end_pos))
-return threats
+    return threats

@@ -1,5 +1,5 @@
-from Gomoku30.gomoku30 import gomoku30
-from Gomoku30.advanced_util import *
+from gomoku30 import gomoku30
+from advanced_util import *
 import random
 import heapq
 import copy

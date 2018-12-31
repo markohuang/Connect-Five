@@ -1,4 +1,4 @@
-from Gomoku30.advanced_util import *
+from advanced_util import *
 
 if __name__ == "__main__":
     '''

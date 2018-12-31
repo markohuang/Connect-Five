@@ -1,6 +1,6 @@
 # more helper functions
-from Gomoku30.advanced_util2 import *
-from Gomoku30.util import *
+from advanced_util2 import *
+from util import *
 import copy
 
 
