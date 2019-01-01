@@ -255,12 +255,17 @@ def play_gomoku(board_size):
     while True:
         print_board(board)
         # move_y, move_x = johns_ai.get_move(board,'o')
-        move_x = int(input('x:\n'))
-        move_y = int(input('y:\n'))
+        try:
+            move_x = int(input('x:\n'))
+            move_y = int(input('y:\n'))
+        except Exception as e:
+            print(e)
         results.append((move_y, move_x))
         print("Your Move: (%d, %d)" % (move_y, move_x))
-
-        board[move_y][move_x] = 'o'
+        if board[move_y][move_x] == ' ':
+            board[move_y][move_x] = 'o'
+        else:
+            return None
         game_res = is_win(board)
         if game_res in ["White won", "Black won", "Draw"]:
             print(game_res)
