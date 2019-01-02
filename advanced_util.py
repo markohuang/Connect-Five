@@ -95,7 +95,8 @@ def get_plays_available(board, positions):
     return possible_plays, set(free_moves)
 
 
-# 这就是个breadth first search，他把所有可能的组合都列出来看看能不能赢
+# 这就是个breadth first search，不出意外我threat_space_search应该会抄这个
+# 就是把所有可能的组合都列出来看看能不能赢，能赢的话return出子顺序 不然return False
 # 这是简化版的threat space search能搜到的东西有限，而且也蛮慢的，其实没测过。你可以测一下看看花多久
 def forced_play(original_board, col):
     # returns a list containing the winning combination of moves (if there are any)
