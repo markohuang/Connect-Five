@@ -4,6 +4,7 @@ from util import *
 import copy
 
 
+# 这就是个queue
 class Queue:
     "A container with a first-in-first-out (FIFO) queuing policy."
     def __init__(self):
@@ -25,6 +26,7 @@ class Queue:
         return len(self.list) == 0
 
 
+# 这个没有特别好的解释，就是学着你当初写的查场上所有5个一组的位置
 def check_open_positions(board):
     # open is a dictionary with two keys 'o' and 'x'.
     # it contains information of all the open twos, threes, and fours on the board
@@ -71,12 +73,14 @@ def check_open_positions(board):
     return open
 
 
+# 这个第二个return的东西好像没用到过，第一个就列出可能的进攻防守会占用的格子
 def get_plays_available(board, positions):
     # helper function for forced_play
     # returns a list of tuples -
     # the first element of each tuple is a possible force play position
     # the second element of each tuple is a possible responsive play position
     # e.g. | |o|o|o| | --> |o|o|o|o|x| or |x|o|o|o|o|
+    # 这个情况下possible_plays应该是x和o的位置，方便forced play放到板子上
     possible_plays = []
     free_moves = []
     for position in positions:
@@ -91,6 +95,8 @@ def get_plays_available(board, positions):
     return possible_plays, set(free_moves)
 
 
+# 这就是个breadth first search，他把所有可能的组合都列出来看看能不能赢
+# 这是简化版的threat space search能搜到的东西有限，而且也蛮慢的，其实没测过。你可以测一下看看花多久
 def forced_play(original_board, col):
     # returns a list containing the winning combination of moves (if there are any)
     # else returns False
@@ -144,6 +150,7 @@ def forced_play(original_board, col):
     return False
 
 
+# 这个function也是模仿你当时写的给板上每个格子算个分
 def get_score(board, col, score):
     opp = 'ox'.replace(col, '')
     open = check_open_positions(board)

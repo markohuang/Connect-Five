@@ -9,7 +9,7 @@ def print_threats(brd, threats):
         print('cost squares:', threat.cost_squares)
         print('rest squares:', threat.rest_squares, '\n')
 
-
+# 这里的test uncomment一下然后跑一下就可以大概知道是怎么回事了
 # Test 1
 # board = make_empty_board(15)
 # board[4][6] = 'x'

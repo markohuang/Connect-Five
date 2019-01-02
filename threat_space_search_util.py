@@ -46,6 +46,7 @@ def unpack_position(position, board, col, n=5):
     return free_positions, rest_positions
 
 
+# 查5个格子里有没有有效威胁，下面的分别是6个和7个没什么用，反正都要重写的
 def check_five(threats, board, i, j, dy, dx, col):
     start_pos = (i, j)
     end_pos = (i + 4 * dy, j + 4 * dx)
