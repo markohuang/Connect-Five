@@ -76,9 +76,9 @@ x = get_threats(board, 'x')
 print_threats(board, x)
 
 
-
 import time
 start = time.time()
-x = get_threats(board, 'x')
+for i in range(200):
+    x = get_threats(board, 'x')
 end = time.time()
-print(end-start)
+print((end-start)/200)

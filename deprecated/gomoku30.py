@@ -1,4 +1,4 @@
-from advanced_util import *
+from deprecated.advanced_util import *
 
 
 def gomoku30(board, col):

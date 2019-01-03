@@ -1,34 +1,118 @@
+from get_threats import *
 from copy import deepcopy
-from threat_space_search_util import *
+from util import Queue
+
+# 还在建设中……
+def threat_space_search(original_board, col):
+    opp = 'ox'.replace(col, '')
+    board = deepcopy(original_board)
+    threats = get_threats(board, col)
+    open = Queue()
+    open.list = [[x] for x in threats]
+    visited = [x for x, _ in threats]
+    while not open.isEmpty():
+        state = open.pop()
+        board, threat = state[-1]
+        if threat.is_winning_threat():
+            winning_play = []
+            for _, item in state:
+                winning_play.append(item.gain_square)
+            str = 'mate in {}'.format(len(winning_play))
+            print(str)
+            return winning_play
+        successor_states = []
+        for item in state:
+            board, threat = item
+            sub_board = get_subBoard(board, threat.gain_square)
+            new_threats = get_threats(sub_board, col)
+            for _, other_threat in new_threats:
+                if other_threat not in state:
+                    successor_states.append(other_threat)
+        for threat in successor_states:
+            pos1, pos2 = play
+            next_board = copy.deepcopy(board)
+            y1, x1 = pos1
+            y2, x2 = pos2
+            next_board[y1][x1] = col
+            next_board[y2][x2] = opp
+            open = check_open_positions(next_board)
+            if open[4][opp] or open[5][opp]:
+                continue
+            if next_board not in visited:
+                path = state + [(next_board, play)]
+                q.push(path)
+                visited += [next_board]
+    return False
 
 
-# 这是个失败作品。跑一次要0.01秒
-# 这个的目的是做出跟paper上跟table 1一样的表 （仅限depth 1）。
-# 在advanced_util里有一个我用breadth first search写的叫forced_play的function
-# 跟这个差不多，就是弱了一点，在baseline_test.py里面有一些test case可以去看一下
-# 这个file的目的和forced_play差不多就是找出'x'必胜的下子顺序
-# 因为这个怎么都得重写所以不用看懂细节，但是这个get_threats应该能用，在threat_space_search_test.py
-# 里有一些这个function的test case
-# 你可以再加一些test case试一试
-def get_threats(board, col):
-    threats = []
-    # opp = 'ox'.replace(col, '')
-    for i in range(len(board)):
-        for j in range(len(board)):
-            for dy, dx in [(1, 0), (0, 1), (1, 1), (1, -1)]:
-                if i+4*dy not in range(len(board)) or j+4*dx not in range(len(board)):
-                    continue
-                elif i+5*dy not in range(len(board)) or j+5*dx not in range(len(board)):
-                    check_five(threats, board, i, j, dy, dx, col)
-                    continue
-                elif i+6*dy not in range(len(board)) or j+6*dx not in range(len(board)):
-                    check_six(threats, board, i, j, dy, dx, col, 'end')
-                    continue
-                check_seven(threats, board, i, j, dy, dx, col)
-    return threats
+    for item in threats:
+        board, threat = item
+        sub_board = get_subBoard(board, threat.gain_square)
+        new_threats = get_threats(sub_board, col)
+        for _, other_threat in new_threats:
+            if other_threat not in threats:
 
 
-# 这个的目的是用楼上的function写出paper里的threat space search
-# 也就是找有没有forced winning combination
-def get_winning_combination(threats, col):
-    pass
+
+def get_subBoard(board, square):
+    y, x = square
+    init_y, init_x = (max(y-4, 0), max(x-4, 0))
+    end_y, end_x = (min(y+4, 14), min(x+4, 14))
+    new_board = board[init_y:end_y+1]
+    for i in range(len(new_board)):
+        row = new_board[i]
+        new_board[i] = row[init_x:end_x+1]
+    return new_board
+
+
+def forced_play(original_board, col):
+    # returns a list containing the winning combination of moves (if there are any)
+    # else returns False
+    board = deepcopy(original_board)
+    open = check_open_positions(board)
+    opp = 'ox'.replace(col, '')
+    possible_plays, _ = get_plays_available(board, open[3][col])
+    q = Queue()
+    visited = [board]
+    for play in possible_plays:
+        pos1, pos2 = play
+        next_board = copy.deepcopy(board)
+        y1, x1 = pos1
+        y2, x2 = pos2
+        next_board[y1][x1] = col
+        next_board[y2][x2] = opp
+        open = check_open_positions(next_board)
+        if open[4][opp] or open[5][opp]:
+            continue
+        q.push([(next_board, play)])
+        visited += [next_board]
+    while not q.isEmpty():
+        state = q.pop()
+        board = state[-1][0]
+        open = check_open_positions(board)
+        if open[4][col]:  # this is a winning forced playing position
+            # print_board(board)
+            # print('winning entry:', open[4][col])
+            winning_play = []
+            for item in state:
+                play = item[1][0]
+                winning_play.append(play)
+            str = 'mate in {}'.format(len(winning_play))
+            print(str)
+            return winning_play
+        possible_plays, _ = get_plays_available(board, open[3][col])
+        for play in possible_plays:
+            pos1, pos2 = play
+            next_board = copy.deepcopy(board)
+            y1, x1 = pos1
+            y2, x2 = pos2
+            next_board[y1][x1] = col
+            next_board[y2][x2] = opp
+            open = check_open_positions(next_board)
+            if open[4][opp] or open[5][opp]:
+                continue
+            if next_board not in visited:
+                path = state + [(next_board, play)]
+                q.push(path)
+                visited += [next_board]
+    return False
