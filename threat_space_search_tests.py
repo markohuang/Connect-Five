@@ -1,8 +1,10 @@
 from threat_space_search import *
+from deprecated.advanced_util import *
 from util import *
 
 
 # 这里的test uncomment一下然后跑一下就可以大概知道是怎么回事了
+# 把function里的东西直接放到console里面跑可以print_board(board)一下
 # Test 1
 def test1():
     board = make_empty_board(15)
@@ -77,8 +79,37 @@ def test3():
     return x
 
 
+def test4():
+    board = make_empty_board(15)
+    board[10][4] = 'o'
+    board[6][5] = 'o'
+    board[7][5] = 'o'
+    board[8][5] = 'o'
+    board[9][5] = 'o'
+    board[10][5] = 'x'
+    board[6][6] = 'x'
+    board[7][6] = 'o'
+    board[8][6] = 'x'
+    board[9][6] = 'x'
+    board[10][6] = 'x'
+    board[11][6] = 'o'
+    board[6][7] = 'x'
+    board[7][7] = 'x'
+    board[8][7] = 'x'
+    board[9][7] = 'o'
+    board[10][7] = 'x'
+    board[6][8] = 'x'
+    board[7][8] = 'o'
+    board[8][8] = 'x'
+    board[8][9] = 'o'
+    board[9][9] = 'o'
+    # x = threat_space_search(board, 'x')
+    x = forced_play(board, 'x')
+    return x
+
+
 if __name__ == "__main__":
-    test1()
+    test4()
 
     # import time
     # start = time.time()
