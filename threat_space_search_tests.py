@@ -21,6 +21,7 @@ def test1():
     board[10][4] = 'o'
     board[9][11] = 'o'
     x = threat_space_search(board, 'x')
+    visualize_sol(board, x)
     return x
 
 
@@ -55,6 +56,7 @@ def test2():
     board[13][14] = 'x'
     board[12][14] = 'x'
     x = threat_space_search(board, 'x')
+    visualize_sol(board, x)
     return x
 
 
@@ -76,6 +78,7 @@ def test3():
     board[8][9] = 'x'
     board[7][10] = 'o'
     x = threat_space_search(board, 'x')
+    visualize_sol(board, x)
     return x
 
 
@@ -105,12 +108,21 @@ def test4():
     board[9][9] = 'o'
     # x = threat_space_search(board, 'x')
     x = forced_play(board, 'x')
+    visualize_sol(board, x)
     return x
 
 
-if __name__ == "__main__":
-    test4()
+def visualize_sol(board,x):
+    print_board(board)
+    print("--SOLUTION--")
+    board2 = deepcopy(board)
+    for move in x:
+        board2[move[0]][move[1]] = 'x'
+    print_board(board2)
 
+if __name__ == "__main__":
+    x=test2()
+    y = 1
     # import time
     # start = time.time()
     # for i in range(10):
