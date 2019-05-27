@@ -25,7 +25,7 @@ There are no dependencies whatsoever (for now) for this project, so a vanilla `p
 
 ## To infinity and beyond!
 
-Once you've familiarized yourself with my pariah of a project you can now decide to do one of three things.
+Once you've familiarized yourself with ~~my~~ our genius of a project you can now decide to do one of three things.
 1. Ackgh! This project is going nowhere, I'm better off doing something else. (and that's fine)
 2. Hmm... I'm in on the idea, but I'll rewrite the entire framework because the existing code sucks. (...)
 3. Cool! I'll create a new branch and work on `threat_space_search`. (Sounds great! * *hint hint* *)
