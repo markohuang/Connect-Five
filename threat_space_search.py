@@ -1,5 +1,4 @@
 from get_threats import *
-from copy import deepcopy
 from util import *
 
 
@@ -83,7 +82,6 @@ def print_threats(brd, threats):
         print('{}: {}'.format(threat.name, threat.gain_square))
         print('cost squares:', threat.cost_squares)
         print('rest squares:', threat.rest_squares, '\n')
-
 
 # def get_subBoard(board, square):  # deprecated
 #     y, x = square

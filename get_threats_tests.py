@@ -10,6 +10,7 @@ def print_threats(brd, threats):
         print('cost squares:', threat.cost_squares)
         print('rest squares:', threat.rest_squares, '\n')
 
+
 # 这里的test uncomment一下然后跑一下就可以大概知道是怎么回事了
 # Test 1
 # board = make_empty_board(15)
@@ -75,10 +76,10 @@ board[7][10] = 'o'
 x = get_threats(board, 'x')
 print_threats(board, x)
 
-
 import time
+
 start = time.time()
 for i in range(200):
     x = get_threats(board, 'x')
 end = time.time()
-print((end-start)/200)
+print((end - start) / 200)

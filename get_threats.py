@@ -128,7 +128,7 @@ def check_six(threats, board, i, j, dy, dx, col, opp):
     for position in free:
         if position in [(i + 5 * dy, j + 5 * dx), (i, j)]:
             continue
-        elif board[i + dy][j + dx] == ' ' and position != (i+dy, j+dx):
+        elif board[i + dy][j + dx] == ' ' and position != (i + dy, j + dx):
             next_board = deepcopy(board)
             threat = Threat('three - single extension')
             threat.gain_square = position
@@ -270,9 +270,9 @@ def check_seven(threats, board, i, j, dy, dx, col, opp):
         threat.gain_square = position
         threat.rest_squares = rest
         threat.cost_squares.append((i + dy, j + dx))
-        threat.cost_squares.append((i + 5*dy, j + 5*dx))
+        threat.cost_squares.append((i + 5 * dy, j + 5 * dx))
         put_on_board(next_board, (i + dy, j + dx), opp)
-        put_on_board(next_board, (i + 5*dy, j + 5*dx), opp)
+        put_on_board(next_board, (i + 5 * dy, j + 5 * dx), opp)
         put_on_board(next_board, position, col)
         threats.append((next_board, threat))
         return None

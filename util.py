@@ -1,8 +1,9 @@
-from deprecated.gomoku30 import gomoku30
-from deprecated.advanced_util import *
-import random
-import heapq
 import copy
+import heapq
+# from deprecated.advanced_util import *
+import random
+
+from deprecated.gomoku30 import gomoku30
 
 
 def is_empty(board):
@@ -333,10 +334,11 @@ def count_check(board, col):
 
 class Stack:
     "A container with a last-in-first-out (LIFO) queuing policy."
+
     def __init__(self):
         self.list = []
 
-    def push(self,item):
+    def push(self, item):
         "Push 'item' onto the stack"
         self.list.append(item)
 
@@ -351,12 +353,13 @@ class Stack:
 
 class Queue:
     "A container with a first-in-first-out (FIFO) queuing policy."
+
     def __init__(self):
         self.list = []
 
-    def push(self,item):
+    def push(self, item):
         "Enqueue the 'item' into the queue"
-        self.list.insert(0,item)
+        self.list.insert(0, item)
 
     def pop(self):
         """
@@ -381,7 +384,8 @@ class PriorityQueue:
       of an item.  However, you may insert the same item multiple times with
       different priorities.
     """
-    def  __init__(self):
+
+    def __init__(self):
         self.heap = []
         self.count = 0
 

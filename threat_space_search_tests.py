@@ -1,5 +1,5 @@
-from threat_space_search import *
 from deprecated.advanced_util import *
+from threat_space_search import *
 from util import *
 
 
@@ -112,7 +112,7 @@ def test4():
     return x
 
 
-def visualize_sol(board,x):
+def visualize_sol(board, x):
     print_board(board)
     print("--SOLUTION--")
     board2 = deepcopy(board)
@@ -120,8 +120,9 @@ def visualize_sol(board,x):
         board2[move[0]][move[1]] = 'x'
     print_board(board2)
 
+
 if __name__ == "__main__":
-    x=test2()
+    x = test2()
     y = 1
     # import time
     # start = time.time()
