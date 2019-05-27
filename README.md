@@ -13,7 +13,7 @@ There are no dependencies whatsoever (for now) for this project, so a vanilla `p
 
 - [x] ~~Steal from CSC180~~ `From Guerzhoy.Assignments import gomoku` to get a basic structure of the game
 - [x] Implement `get_threats.py` to examine the board and categorize squares (still needs testing). → A starting point for `threat_space_search.py`
-- [ ] Implment `threat_space_search.py` to perform search using `get_threats` to win the game (under progress). ~~_and that's it!_~~
+- [ ] Implement `threat_space_search.py` to perform search using `get_threats` to win the game (under progress).
 - [ ] Cache `threat_space_search` results into a dictionary for performance.
 - [ ] Get this project onto a server and create a front end web app.
 
