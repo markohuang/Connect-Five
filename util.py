@@ -332,6 +332,16 @@ def count_check(board, col):
     print(dctn)
 
 
+# ------ More Helper Stuff
+
+
+def str_to_board(board_str):
+    """Turns a string into a board"""
+    board = list(filter(None, board_str.replace('\n', '').split('*')))[1::]
+    board = [[square for square in row[1::].split('|')] for row in board]
+    return board
+
+
 class Stack:
     "A container with a last-in-first-out (LIFO) queuing policy."
 

@@ -1,28 +1,20 @@
-from get_threats import *
-from util import *
+"""Search through threat space (Under Construction)"""
+from copy import deepcopy
+
+from get_threats import get_threats
+from util import Queue
 
 
-# class Node:
-#     def __init__(self, data):
-#         self.board = data[0]
-#         self.gain_squares = [data[1].gain_square]
-#         self.cost_squares = data[1].cost_squares
-#         self.children = []
-#
-#     def add_child(self, obj):
-#         self.children.append(obj)
-
-
-# 还在建设中……
 def threat_space_search(original_board, col):
+    """Search all possible ways to reach a win"""
     opp = 'ox'.replace(col, '')
     board = deepcopy(original_board)
     threats = get_threats(board, col)
-    open = Queue()
-    open.list = [[x] for x in threats]
+    frontier = Queue()
+    frontier.list = [[x] for x in threats]
     visited_boards = [x for x, _ in threats]
-    while not open.isEmpty():
-        state = open.pop()
+    while not frontier.isEmpty():
+        state = frontier.pop()
         board, threat = state[-1]
         if threat.is_winning_threat():
             winning_play = []
@@ -71,17 +63,10 @@ def threat_space_search(original_board, col):
             next_board, next_threat = successor
             if next_board not in visited_boards:
                 path = state + [successor]
-                open.push(path)
+                frontier.push(path)
                 visited_boards += [next_board]
     return False
 
-
-def print_threats(brd, threats):
-    print_board(brd)
-    for _, threat in threats:
-        print('{}: {}'.format(threat.name, threat.gain_square))
-        print('cost squares:', threat.cost_squares)
-        print('rest squares:', threat.rest_squares, '\n')
 
 # def get_subBoard(board, square):  # deprecated
 #     y, x = square

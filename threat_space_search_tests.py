@@ -3,7 +3,7 @@ from copy import deepcopy
 
 from deprecated.advanced_util import forced_play  # for comparison
 from threat_space_search import threat_space_search
-from util import print_board
+from util import print_board, str_to_board
 
 
 def test1():
@@ -116,13 +116,6 @@ def visualize_sol(board, winning_combination):
         board2[move[0]][move[1]] = 'x'
     print(winning_combination)
     print_board(board2)
-
-
-def str_to_board(board_str):
-    """Turns a string into a board"""
-    board = list(filter(None, board_str.replace('\n', '').split('*')))[1::]
-    board = [[square for square in row[1::].split('|')] for row in board]
-    return board
 
 
 if __name__ == "__main__":
