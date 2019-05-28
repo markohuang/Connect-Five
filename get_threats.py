@@ -297,7 +297,7 @@ def check_kernel(kernel_squares, board, col, opp):
     for square in kernel_squares:
         y_ind, x_ind = square
         if board[y_ind][x_ind] == opp:
-            return free, rest
+            return [], []
         if board[y_ind][x_ind] == col:
             rest.append(square)
         else:

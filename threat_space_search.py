@@ -28,7 +28,7 @@ def threat_space_search(original_board, col):
         # FIXME comment this out to test other functionality
         # FIXME checking for combinations DOES NOT WORK YET
         # comb_board = deepcopy(board)
-        # for item in open.list:
+        # for item in frontier.list:
         #     threat2 = item[-1][1]
         #     if threat2 == threat:
         #         continue
